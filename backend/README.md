@@ -9,18 +9,20 @@ A Node.js backend service built with TypeORM, Express, and OpenAI integration fo
 
 ## Quick Start with Docker
 
-### 1. Setup Environment Files
+### 1. Setup Environment Variables
 
-Before running the application, you need to create the required secret files:
+Before running the application, you need to create a `.env` file in the backend directory:
 
 ```bash
-# Create the database password file
-mkdir -p db
-echo "your-database-password" > db/password.txt
+# Create the .env file
+touch .env
+```
 
-# Create the OpenAI API key file
-mkdir -p openapi
-echo "your-openai-api-key" > openapi/key.txt
+Add the following variables to your `.env` file:
+
+```env
+DB_PASSWORD=your-database-password
+OPENAI_API_KEY=your-openai-api-key
 ```
 
 ### 2. Build and Run with Docker Compose
@@ -53,14 +55,14 @@ docker-compose down -v
 
 ## Environment Variables
 
-The following environment variables are configured via Docker secrets:
+The following environment variables are configured via `.env` file:
 
 - `DB_HOST`: Database host (default: db)
 - `DB_PORT`: Database port (default: 5432)
 - `DB_USERNAME`: Database username (default: postgres)
-- `DB_PASSWORD_FILE`: Path to database password file
+- `DB_PASSWORD`: Database password (from .env file)
 - `DB_NAME`: Database name (default: example)
-- `OPENAI_API_KEY`: Path to OpenAI API key file
+- `OPENAI_API_KEY`: OpenAI API key (from .env file)
 
 ## Available Scripts
 

@@ -21,8 +21,7 @@ AI Scribe is a full-stack application that helps healthcare professionals manage
 AI Scribe/
 ├── backend/           # Node.js backend service
 │   ├── src/          # Source code
-│   ├── db/           # Database configuration
-│   ├── openapi/      # OpenAI configuration
+│   ├── .env          # Environment variables
 │   └── docker-compose.yml
 └── frontend/         # React frontend application
     ├── src/          # Source code
@@ -43,18 +42,20 @@ AI Scribe/
 
 #### Environment Configuration
 
-Before running the backend, create the required secret files:
+Before running the backend, create a `.env` file in the backend directory:
 
 ```bash
 cd backend
 
-# Create the database password file
-mkdir -p db
-echo "your-database-password" > db/password.txt
+# Create the .env file
+touch .env
+```
 
-# Create the OpenAI API key file
-mkdir -p openapi
-echo "your-openai-api-key" > openapi/key.txt
+Add the following variables to your `.env` file:
+
+```env
+DB_PASSWORD=your-database-password
+OPENAI_API_KEY=your-openai-api-key
 ```
 
 #### Start Backend Services
@@ -120,14 +121,14 @@ docker-compose down
 
 ## Environment Variables
 
-### Backend (Docker Secrets)
+### Backend (.env file)
 
 - `DB_HOST`: Database host (default: db)
 - `DB_PORT`: Database port (default: 5432)
 - `DB_USERNAME`: Database username (default: postgres)
-- `DB_PASSWORD_FILE`: Path to database password file
+- `DB_PASSWORD`: Database password (from .env file)
 - `DB_NAME`: Database name (default: example)
-- `OPENAI_API_KEY`: Path to OpenAI API key file
+- `OPENAI_API_KEY`: OpenAI API key (from .env file)
 
 ## Available Scripts
 
