@@ -1,0 +1,50 @@
+services:
+  server:
+    build:
+      secrets:
+        - openai-key
+      context: .
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD_FILE: /run/secrets/db-password
+      DB_NAME: example
+      OPENAI_API_KEY: /run/secrets/openai-key
+    ports:
+      - 3000:3000
+    volumes:
+      - uploads-data:/usr/src/app/uploads
+    secrets:
+      - db-password
+      - openai-key
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+    restart: always
+    user: postgres
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=example
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    expose:
+      - 5432
+    healthcheck:
+      test: ['CMD', 'pg_isready']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  db-data:
+  uploads-data:
+secrets:
+  db-password:
+    file: db/password.txt
+  openai-key:
+    file: openapi/key.txt
