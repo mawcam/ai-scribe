@@ -213,3 +213,14 @@ The frontend can be deployed to any static hosting service (Netlify, Vercel, Git
 cd frontend
 npm run build
 ```
+
+## LLM Setup
+
+This project was developed with the assistance of **Cursor AI**, a powerful AI-powered code editor that significantly enhanced the development process:
+
+### AI-Assisted Development Features Used
+
+- **Agent Mode**: Utilized Cursor's agent mode for intelligent code generation and problem-solving
+- **Styling Assistance**: AI-powered styling suggestions and CSS/component styling optimization
+- **Code Autocompletions**: Enhanced development speed with intelligent code completions
+- **TypeScript Support**: AI-assisted TypeScript type inference and error resolution
